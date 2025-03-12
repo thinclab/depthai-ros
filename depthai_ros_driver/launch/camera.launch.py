@@ -171,6 +171,9 @@ def launch_setup(context, *args, **kwargs):
 
     launch_prefix = setup_launch_prefix(context)
 
+
+    # Added a Static Transform Publisher Node to automatically publish the "world" to "root" dummy link
+    # Also changed the camera location and set the "rsp_use_composition" parameter to True
     return [
         Node(
             condition=IfCondition(LaunchConfiguration("use_rviz").perform(context)),
@@ -179,6 +182,12 @@ def launch_setup(context, *args, **kwargs):
             name="rviz2",
             output="log",
             arguments=["-d", LaunchConfiguration("rviz_config")],
+        ),
+        Node(
+            package="tf2_ros",
+            executable="static_transform_publisher",
+            name="root_transform",
+            arguments=["0", "0", "0", "0", "0", "0", "1", "world", "root"],
         ),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
@@ -285,13 +294,13 @@ def generate_launch_description():
     declared_arguments = [
         DeclareLaunchArgument("name", default_value="oak"),
         DeclareLaunchArgument("namespace", default_value=""),
-        DeclareLaunchArgument("parent_frame", default_value="oak-d-base-frame"),
+        DeclareLaunchArgument("parent_frame", default_value="world"),
         DeclareLaunchArgument("camera_model", default_value="OAK-D-PRO"),
-        DeclareLaunchArgument("cam_pos_x", default_value="0.0"),
-        DeclareLaunchArgument("cam_pos_y", default_value="0.0"),
-        DeclareLaunchArgument("cam_pos_z", default_value="0.0"),
-        DeclareLaunchArgument("cam_roll", default_value="0.0"),
-        DeclareLaunchArgument("cam_pitch", default_value="0.0"),
+        DeclareLaunchArgument("cam_pos_x", default_value="0.551"),
+        DeclareLaunchArgument("cam_pos_y", default_value="-0.02"),
+        DeclareLaunchArgument("cam_pos_z", default_value="1.875"),
+        DeclareLaunchArgument("cam_roll", default_value="-1.570796"),
+        DeclareLaunchArgument("cam_pitch", default_value="1.570796"),
         DeclareLaunchArgument("cam_yaw", default_value="0.0"),
         DeclareLaunchArgument(
             "params_file",
@@ -302,7 +311,7 @@ def generate_launch_description():
             "rviz_config",
             default_value=os.path.join(depthai_prefix, "config", "rviz", "rgbd.rviz"),
         ),
-        DeclareLaunchArgument("rsp_use_composition", default_value="true"),
+        DeclareLaunchArgument("rsp_use_composition", default_value="false"),
         DeclareLaunchArgument(
             "publish_tf_from_calibration",
             default_value="false",

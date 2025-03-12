@@ -75,6 +75,9 @@ def launch_setup(context, *args, **kwargs):
             ]
         )
     }
+    
+    # Added a topic remapping for the robot_state_publisher to avoid conflicts with the KUKA URDF
+    # Changed for both nodes below, but currently uses normal Node unless "rsp_use_composition" is set to "True" in "camera.launch.py"
     return [
         Node(
             package="robot_state_publisher",
@@ -83,6 +86,9 @@ def launch_setup(context, *args, **kwargs):
             name=name + "_state_publisher",
             namespace=namespace,
             parameters=[robot_description],
+            remappings=[
+                ('/robot_description', '/oak_camera_description'),
+            ],      
         ),
         LoadComposableNodes(
             target_container=f"{namespace.perform(context)}/{name}_container",
@@ -94,6 +100,9 @@ def launch_setup(context, *args, **kwargs):
                     name=name + "_state_publisher",
                     namespace=namespace,
                     parameters=[robot_description],
+                    remappings=[
+                        ('/robot_description', '/oak_camera_description'),
+                    ],
                 )
             ],
         ),
