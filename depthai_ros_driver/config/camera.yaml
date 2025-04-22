@@ -7,3 +7,7 @@
       i_pipeline_type: RGBD
     nn:
       i_nn_config_path: depthai_ros_driver/mobilenet
+    rgb:
+      r_set_man_exposure: true
+      r_exposure: 3786
+      r_iso: 758

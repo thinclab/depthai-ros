@@ -297,7 +297,7 @@ def generate_launch_description():
         DeclareLaunchArgument("parent_frame", default_value="world"),
         DeclareLaunchArgument("camera_model", default_value="OAK-D-PRO"),
         DeclareLaunchArgument("cam_pos_x", default_value="0.551"),
-        DeclareLaunchArgument("cam_pos_y", default_value="-0.02"),
+        DeclareLaunchArgument("cam_pos_y", default_value="-0.014"),
         DeclareLaunchArgument("cam_pos_z", default_value="1.875"),
         DeclareLaunchArgument("cam_roll", default_value="-1.570796"),
         DeclareLaunchArgument("cam_pitch", default_value="1.570796"),
