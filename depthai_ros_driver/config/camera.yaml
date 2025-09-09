@@ -1,6 +1,14 @@
 /**:
   ros__parameters:
     camera:
+      i_publish_tf_from_calibration: true
+      i_tf_parent_frame: world
+      i_tf_cam_pos_x: "0.355"
+      i_tf_cam_pos_y: "-0.002"
+      i_tf_cam_pos_z: "1.87"
+      i_tf_cam_roll: "0.0"
+      i_tf_cam_pitch: "1.570796"
+      i_tf_cam_yaw: "0.0"
       i_enable_imu: true
       i_enable_ir: true
       i_nn_type: spatial
@@ -9,5 +17,13 @@
       i_nn_config_path: depthai_ros_driver/mobilenet
     rgb:
       r_set_man_exposure: true
-      r_exposure: 3786
-      r_iso: 758
+      r_set_man_whitebalance: true
+      r_exposure: 33000
+      r_iso: 204
+      r_whitebalance: 3200
+    pipeline_gen:
+      i_enable_imu: true
+    imu:
+      i_enable_acc: true
+      i_enable_gyro: true
+      i_enable_rotation: true

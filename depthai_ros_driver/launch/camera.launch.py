@@ -55,7 +55,7 @@ def launch_setup(context, *args, **kwargs):
     cam_roll = LaunchConfiguration("cam_roll", default="0.0")
     cam_pitch = LaunchConfiguration("cam_pitch", default="0.0")
     cam_yaw = LaunchConfiguration("cam_yaw", default="0.0")
-    use_composition = LaunchConfiguration("rsp_use_composition", default="true")
+    use_composition = LaunchConfiguration("rsp_use_composition", default="false")
     imu_from_descr = LaunchConfiguration("imu_from_descr", default="false")
     publish_tf_from_calibration = LaunchConfiguration(
         "publish_tf_from_calibration", default="false"
@@ -173,7 +173,6 @@ def launch_setup(context, *args, **kwargs):
 
 
     # Added a Static Transform Publisher Node to automatically publish the "world" to "root" dummy link
-    # Also changed the camera location and set the "rsp_use_composition" parameter to True
     return [
         Node(
             condition=IfCondition(LaunchConfiguration("use_rviz").perform(context)),
@@ -296,11 +295,11 @@ def generate_launch_description():
         DeclareLaunchArgument("namespace", default_value=""),
         DeclareLaunchArgument("parent_frame", default_value="world"),
         DeclareLaunchArgument("camera_model", default_value="OAK-D-PRO"),
-        DeclareLaunchArgument("cam_pos_x", default_value="0.551"),
-        DeclareLaunchArgument("cam_pos_y", default_value="-0.014"),
-        DeclareLaunchArgument("cam_pos_z", default_value="1.875"),
-        DeclareLaunchArgument("cam_roll", default_value="-1.570796"),
-        DeclareLaunchArgument("cam_pitch", default_value="1.570796"),
+        DeclareLaunchArgument("cam_pos_x", default_value="0.0"),
+        DeclareLaunchArgument("cam_pos_y", default_value="0.0"),
+        DeclareLaunchArgument("cam_pos_z", default_value="0.0"),
+        DeclareLaunchArgument("cam_roll", default_value="0.0"),
+        DeclareLaunchArgument("cam_pitch", default_value="0.0"),
         DeclareLaunchArgument("cam_yaw", default_value="0.0"),
         DeclareLaunchArgument(
             "params_file",
