@@ -98,3 +98,24 @@ Start the Oak-D S2 Camera Driver with the following launch command.
 If it is successful, you should see a message like this,
 
     [component_container-3] [INFO] [1742215114.606896223] [oak]: Camera ready!
+
+### Calibration
+
+In order to calibrate the camera, you will need to clone the `depthai` repository. Then, create a Python environment and install dependencies with the `requirements.txt` file. Make sure that the `depthai-calibration` and `depthai-boards` repositories are also downloaded into the corresponding folders of the `depthai` repository. If everything is setup correctly, follow the instructions at the following documentation.
+[Calibration Documentation](https://docs.luxonis.com/hardware/platform/depth/calibration)<br>
+
+<!-- git clone luxonis/depthai
+conda env create 
+pip install /depthai/requirements.txt
+conda install libstdcxx -c conda-forge
+pip install opencv-contrib-python==4.7.0.72 opencv-python==4.7.0.72
+pip install matplotlib
+git clone luxonis/depthai-calibration
+git clone luxonis/depthai-boards
+mv depthai-calibration/calibration_utils.py into /depthai
+mv depthai-boards into /depthai/resources
+apply changes to calibrate.py
+
+python3 calibrate.py -s 3.45 --board OAK-D-S2 -nx 13 -ny 7 -m process
+
+https://docs.luxonis.com/software-v3/depthai/tools/oak-viewer/ -->
